@@ -1,0 +1,14 @@
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  role      Role
+  banned    Boolean  @default(false)
+
+  medicines Medicine[] @relation("SellerMedicines")
+  orders    Order[]    @relation("CustomerOrders")
+  reviews   Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

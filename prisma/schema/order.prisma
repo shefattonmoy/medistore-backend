@@ -1,0 +1,11 @@
+model Order {
+  id         String      @id @default(cuid())
+  customerId String
+  customer   User        @relation("CustomerOrders", fields: [customerId], references: [id])
+
+  status     OrderStatus @default(PLACED)
+  address    String
+  totalPrice Float
+
+  createdAt  DateTime @default(now())
+}
